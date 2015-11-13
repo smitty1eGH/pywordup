@@ -15,15 +15,18 @@ from pywordup import pywordup
 TEST_STRING = "The difference between theory and practice is greater in practice than in theory."
 TEST_WIDTH  = 25
 
+TEST_STR2   = "hop head red"
+TEST_WID2   = 4
+
 class TestPywordup(unittest.TestCase):
 
     def setUp(self):
-        self.p = pywordup.PuzzleSource( TEST_STRING       ,"Herb Sutter" )
+        self.p = pywordup.puzzleSource( TEST_STRING )
         self.l = pywordup.PuzzleLayout( self.p            , TEST_WIDTH )
         self.f = pywordup.PuzzleFormat( self.l.do_layout(), TEST_WIDTH )
         
     def test_next_word(self):
-        [print(w) for w in self.p.next_word()]
+        [print(w) for w in self.p]
 
     def test_do_layout(self):
         print(self.l.do_layout())
