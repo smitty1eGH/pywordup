@@ -32,6 +32,11 @@ class TestPywordup(unittest.TestCase):
         self.f.do_format()
         print(self.f.puzzle_lines)
         print(self.f.clue_lines)
+
+    def test_puzzlePublish(self):
+        self.f.do_format()
+        print("<html><body>%s</body></html>" \
+            % pywordup.puzzlePublish(self.f))
         
     def tearDown(self):
         pass

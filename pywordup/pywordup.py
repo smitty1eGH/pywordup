@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-
 from random import shuffle
 
 class PuzzleSource(object):
@@ -79,8 +78,6 @@ class PuzzleFormat(object):
                 y = self.puzzle_lines[x][j:j+1]
                 if x != " ":
                     self.vertical.append( y )
-                else:
-                    print("%s\t%s" % (x,y))
             return shuffle( self.vertical )
         
         j = 0
@@ -92,4 +89,17 @@ class PuzzleFormat(object):
             for k in range(0, len(self.vertical) -1):
                 self.clue_lines[k] += self.vertical[k]
 
+def puzzlePublish(puzzle_format):
+    """PuzzlePublish takes the PuzzleFormat instance and renders its 
+       puzzle_lines and clue_lines as HTML
+    """
+    #make a big list of all of the characters as lists of TD tags
+    rows = [["<td>%s</td>" % c for c in x]
+                               for x in puzzle_format.puzzle_lines] \
+         + [["<td>%s</td>" % c for c in x]
+                               for x in puzzle_format.clue_lines]
 
+    #make a TABLE
+    return "<table border='1'>"    \
+         + "".join(["<tr>%s</tr>"  % "".join(r) for r in rows]) \
+         + "</table>"
